@@ -61,15 +61,15 @@ int main(int argc, char **argv)
 		}*/
         for (i = 0 ; i < m; i++)
         {
-            a[i] = i+1 ; 
+            a[i] = i+1; 
             printf("vec[%d]= %.3lf\n",i,a[i]);
         }
         
         for ( i = 0 ; i < n ; i++)
             for (j = 0; j < m ; j++)
             {
-                b[j + (i*n)] = i*(j+1);
-                printf("mat[%d]= %.3lf\n", j+(i*n),b[j+(i*n)]);
+                b[j + (i*m)] = i*(j+1);
+                printf("mat[%d]= %.3lf\n", j+(i*m),b[j+(i*m)]);
 
             }
 		
@@ -112,7 +112,7 @@ int main(int argc, char **argv)
 		i = my_rank - 1;
 		for( j = 0 ; j < m; j++ )
 		{
-			s += a[j] * b[ (i*n) + j ];		
+			s += a[j] * b[ (i*m) + j ];		
 		}
 		printf("Soy el proceso %d, enviando el dato %.3lf \n",my_rank, s);
 		MPI_Send(&s, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);	
