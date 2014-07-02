@@ -27,12 +27,10 @@ int main(int argc, char **argv)
      
     MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
-     
-    num_procesos = size-1;
-    m = 101; 
+    num_procesos = size-1; 
     if( my_rank == 0)
     {
-        printf("Indicar Matriz\n");
+        /*printf("Indicar Matriz\n");
         do{
             printf("Numero de Filas: ");
             scanf("%d", &m);
@@ -43,9 +41,9 @@ int main(int argc, char **argv)
             }
  
         }while(m>M);
-         
+         */
         n = num_procesos;
- 
+ /*
         for(i=0; i<m; i++){
             printf("vec[%d]= ", i);
             scanf("%lf", &a[i]);
@@ -57,7 +55,18 @@ int main(int argc, char **argv)
                 scanf("%lf", &b[j + (i*m)]);
             }
         }
-         
+   */   m = 3;
+        for (i = 0 ; i < m; i++)
+        {
+            a[i] = i+1; 
+        }
+        
+        for ( i = 0 ; i < n ; i++)
+            for (j = 0; j < m ; j++)
+            {
+                b[j + (i*m)] = i+1;
+
+            }
         /*Enviar datos de entrada a los procesos*/
          
         for (i = 1 ; i <= num_procesos ; i++)
