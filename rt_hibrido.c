@@ -62,6 +62,7 @@ int main(int argc, char **argv)
     int n , local_n ,  n_p;
     double a_p, b_p;
 
+    n = 1;
 
     if( my_rank == 0)
     {
