@@ -45,10 +45,7 @@ int main(int argc, char **argv)
 			}
 
 		}*/
-		
-		printf ("Soy el proceso %d",my_rank);
-		m = 3;
-		
+		m = 3;	
 		n = num_procesos;
 
 		/*for(i=0; i<m; i++){
@@ -110,11 +107,12 @@ int main(int argc, char **argv)
 		MPI_Recv(&b, (m*n), MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 		
 		printf("Soy el proceso %d, estoy recibiendo de P%d \n",my_rank, 0);
-		s=0.0;
+		int i, j;
+		double s = 0.0;
 		i = my_rank - 1;
-		for(j=0;j<m;j++)
+		for( j = 0 ; j < m; j++ )
 		{
-			s+= a[j]*b[(i*n)+j];		
+			s += a[j] * b[ (i*n) + j ];		
 		}
 		printf("Soy el proceso %d, enviando el dato %.3lf \n",my_rank, s);
 		MPI_Send(&s, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);	
