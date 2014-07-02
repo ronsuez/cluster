@@ -112,10 +112,11 @@ int main(int argc, char **argv)
             iam=omp_get_thread_num();
             j = iam;
             #pragma omp critical
+            {
+                printf("Hola, soy el hilo %d del proceso %d. Calcule %.3lf \n", iam, my_rank,a[j]*b[((my_rank-1)*np)+j]);
                 s+= a[j]*b[((my_rank-1)*np)+j];
-            printf("Hola, soy el hilo %d del proceso %d. Calcule %.3lf \n", iam, my_rank,s);
+            }   
         }       
-         
         printf("Soy el proceso %d, enviando el dato %.3lf \n",my_rank, s);
         MPI_Send(&s, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);  
          
