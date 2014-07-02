@@ -64,7 +64,7 @@ int main(int argc, char **argv)
 		}*/
         for (i = 0 ; i < m; i++)
         {
-            a[i] = i+1; 
+            a[i] = i+1 ; 
             printf("vec[%d]= %.3lf\n",i,a[i]);
         }
         
@@ -84,7 +84,7 @@ int main(int argc, char **argv)
 			MPI_Send(&m, 1, MPI_INT, i, 0, MPI_COMM_WORLD);
 			MPI_Send(&n, 1, MPI_INT, i, 0, MPI_COMM_WORLD);
 			MPI_Send(&a, m, MPI_DOUBLE, i, 0, MPI_COMM_WORLD);
-			MPI_Send(&b, m + (m*n), MPI_DOUBLE, i, 0, MPI_COMM_WORLD);
+			MPI_Send(&b, (m*n), MPI_DOUBLE, i, 0, MPI_COMM_WORLD);
 		}
 		
 		for (i = 1 ; i <=num_procesos ; i++)
@@ -107,7 +107,7 @@ int main(int argc, char **argv)
 		MPI_Recv(&m, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 		MPI_Recv(&n, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 		MPI_Recv(&a, m, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-		MPI_Recv(&b, m + (m*n), MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+		MPI_Recv(&b, (m*n), MPI_DOUBLE, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 		
 		printf("Soy el proceso %d, estoy recibiendo de P%d \n",my_rank, 0);
 		s=0.0;
