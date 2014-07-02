@@ -68,8 +68,8 @@ int main(int argc, char **argv)
         for ( i = 0 ; i < n ; i++)
             for (j = 0; j < m ; j++)
             {
-                b[j + (i*m)] = i*(j+1);
-                printf("mat[%d]= %.3lf\n", j+(i*m),b[j+(i*m)]);
+                b[j + (i*n)] = i*(j+1);
+                printf("mat[%d]= %.3lf\n", j+(i*n),b[j+(i*n)]);
 
             }
 		
