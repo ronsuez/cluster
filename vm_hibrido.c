@@ -66,7 +66,7 @@ int main(int argc, char **argv)
             for (j = 0; j < m ; j++)
             {
                 b[j + (i*m)] = i*(j+1);
-                printf("mat[%d]= %.3lf\n",j + (i*m),b[i]);
+                printf("mat[%d]= %.3lf\n", j+(i*m),b[j+(i*m)]);
 
             }
         /*Enviar datos de entrada a los procesos*/
