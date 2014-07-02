@@ -29,7 +29,7 @@ int main(int argc, char **argv)
     MPI_Comm_size(MPI_COMM_WORLD, &size);
      
     num_procesos = size-1;
-     
+    m = 101; 
     if( my_rank == 0)
     {
         printf("Indicar Matriz\n");
