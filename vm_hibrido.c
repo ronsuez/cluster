@@ -104,17 +104,17 @@ int main(int argc, char **argv)
          
         printf("Soy el proceso %d, estoy recibiendo de P%d \n",my_rank, 0);
         s=0.;
-        i = my_rank - 1;
         int iam = 0 , np = 1;
         #pragma omp parallel default(shared) private(iam ,np) num_threads((int)m)
         {
             np=omp_get_num_threads();
             iam=omp_get_thread_num();
             j = iam;
+            i = my_rank-1;
             #pragma omp critical
             {
                 printf("Hola, soy el hilo %d del proceso %d. Calcule %.3lf \n", iam, my_rank,a[j]*b[((my_rank-1)*np)+j]);
-                s+= a[j]*b[((my_rank-1)*np)+j];
+                s+= a[j]*b[((i)*np)+j];
             }   
         }       
         printf("Soy el proceso %d, enviando el dato %.3lf \n",my_rank, s);
