@@ -59,12 +59,14 @@ int main(int argc, char **argv)
         for (i = 0 ; i < m; i++)
         {
             a[i] = i+1; 
+            printf("vec[%d]= %.3lf\n",i,a[i]);
         }
         
         for ( i = 0 ; i < n ; i++)
             for (j = 0; j < m ; j++)
             {
                 b[j + (i*m)] = i*j;
+                printf("mat[%d]= %.3lf\n",j + (i*m),b[j + (i*m)]);
 
             }
         /*Enviar datos de entrada a los procesos*/
