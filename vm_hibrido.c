@@ -64,7 +64,7 @@ int main(int argc, char **argv)
         for ( i = 0 ; i < n ; i++)
             for (j = 0; j < m ; j++)
             {
-                b[j + (i*m)] = i+1;
+                b[j + (i*m)] = i*j;
 
             }
         /*Enviar datos de entrada a los procesos*/
@@ -83,7 +83,7 @@ int main(int argc, char **argv)
             MPI_Recv(&c[i-1], 1, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
             printf("Soy el proceso %d, estoy recibiendo de P%d resultados\n",my_rank, i);
         }
-         
+        sleep(1); 
         printf("Vector [");
          
         for (i= 0 ; i < n ; i++)
