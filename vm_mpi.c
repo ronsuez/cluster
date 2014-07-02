@@ -47,7 +47,7 @@ int main(int argc, char **argv)
 		}*/
 		
 		printf ("Soy el proceso %d",my_rank);
-		m = 4;
+		m = 3;
 		
 		n = num_procesos;
 
