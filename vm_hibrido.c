@@ -41,11 +41,11 @@ int main(int argc, char **argv)
             col_proc = n / num_procesos;
          }while (n % num_procesos != 0);
          
-         		printf("Vector [");
+         		//printf("Vector [");
         for (i = 0 ; i < m; i++)
         {
             a[i] = i+1; 
-            printf(" %.0lf ",a[i]);
+           // printf(" %.0lf ",a[i]);
         }
         printf("]\n");
         for ( i = 0 ; i < n ; i++)
@@ -56,18 +56,18 @@ int main(int argc, char **argv)
 
             }
 
-        printf("Matriz\n");
-		for ( i = 0 ; i < m ; i ++)
-		{
-			printf("[");
+  //       printf("Matriz\n");
+		// for ( i = 0 ; i < m ; i ++)
+		// {
+		// 	printf("[");
 			
-			for ( k = 0 ; k < n ; k++)
-			{
-				//printf("- %d",k);
-				printf(" %.0lf ",b[i + (k*m)]);
-			}
-			printf("]\n");
-		}
+		// 	for ( k = 0 ; k < n ; k++)
+		// 	{
+		// 		//printf("- %d",k);
+		// 		printf(" %.0lf ",b[i + (k*m)]);
+		// 	}
+		// 	printf("]\n");
+		// }
 	/*Enviar datos de entrada a los procesos*/
 		
 		for (i = 1 ; i <= num_procesos ; i++)
@@ -98,13 +98,13 @@ int main(int argc, char **argv)
 			//printf("Soy el proceso %d, estoy recibiendo de P%d resultados\n",my_rank, i);
 		}
 		
-		printf("\n\nVector Resultado [");
+		// printf("\n\nVector Resultado [");
 		
-		for (i= 0 ; i < n ; i++)
-		{
-			printf("%.0lf ",c[i]);
-		}
-		printf("]\n");
+		// for (i= 0 ; i < n ; i++)
+		// {
+		// 	printf("%.0lf ",c[i]);
+		// }
+		// printf("]\n");
     }
      
     if( my_rank != 0)
