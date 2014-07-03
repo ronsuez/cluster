@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <mpi.h>
  
@@ -8,10 +9,11 @@
  
 int main(int argc, char **argv) 
 {
-	static double	a[N],				/*Vector A*/
+	static double
+	        a[N],				/*Vector A*/
 			b[M+(N*M)],			/*Matriz B*/
-			c[N],				/*Vector Fila resultante C*/			
-			vaux[N];
+			c[M*N],				/*Vector Fila resultante C*/			
+			vaux[M*N];
 			
 	int 	size, 				/*Cantidad de procesos*/
 			my_rank,			/*Numero de proceso*/
@@ -128,28 +130,34 @@ int main(int argc, char **argv)
 			hilos = col_proc;
 
 		printf("Soy el proceso %d, ini %d fin %d\n",my_rank, min, max);
-		double s[total];
+		 double * s = malloc(sizeof(double)*100000);
 		cont = 0;		
-		#pragma omp parallel private(i,j,h_min, h_max) num_threads(2)
-		{
-
-			for (i = min ; i < max ; i++)
+		
+		  #pragma omp parallel default(shared) private(iam, np)
 			{
-				for( j = 0 ; j < m; j++ )
-				{
-					s[cont] += a[j] * b[ (i*m) + j ];		
-				}
-				cont++;
-			}
-			cont++;
-		}
+				np = omp_get_num_threads();
+				iam = omp_get_thread_num();
+				printf("Hello from thread %d out of %d from process %d\n", iam, np, my_rank);
+					for (i = min ; i < max ; i++)
+					{
+						for( j = 0 ; j < m; j++ )
+						{
+							s[cont] += a[j] * b[ (i*m) + j ];
+									
+						}
+						cont++;
+					}
+					cont++;
           
+			  
+			}
+		
 		MPI_Send(&total, 1, MPI_INT, 0, 0, MPI_COMM_WORLD);
-		MPI_Send(&s, total, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
-         
+		MPI_Send(s, total, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
+        free(s);
     }   
      
-     
+
     MPI_Finalize();
  
 }
