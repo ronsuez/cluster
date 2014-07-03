@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 			}
 
 		}*/
-		m = 3;	
+		m = 50;	
 		n = num_procesos;
 
 		/*for(i=0; i<m; i++){
