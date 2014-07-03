@@ -6,8 +6,8 @@
  
 
 int main(int argc, char* argv[]) {
-        double a[M] ;
-        double b[M*N];
+        static double a[M] ;
+        static double b[M*N];
         
         int n, m , i, j;
         
