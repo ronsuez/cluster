@@ -55,7 +55,7 @@ int main(int argc, char **argv)
                 scanf("%lf", &b[j + (i*m)]);
             }
         }
-   */   m = 3;
+   */   m = 50; /* cantidad de filas */
         for (i = 0 ; i < m; i++)
         {
             a[i] = i+1; 
@@ -105,7 +105,7 @@ int main(int argc, char **argv)
         printf("Soy el proceso %d, estoy recibiendo de P%d \n",my_rank, 0);
         s=0.0;
         int iam = 0 , np = 1;
-        
+
         #pragma omp parallel default(shared) private(iam ,np,i,j) num_threads((int)m)
         {
             np=omp_get_num_threads();

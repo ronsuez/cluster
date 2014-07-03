@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 			}
 
 		}*/
-		m = 50;	
+		m = 50;	/* cantidad de filas */
 		n = num_procesos;
 
 		/*for(i=0; i<m; i++){
