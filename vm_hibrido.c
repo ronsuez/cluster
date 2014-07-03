@@ -129,27 +129,19 @@ int main(int argc, char **argv)
 
 		printf("Soy el proceso %d, ini %d fin %d\n",my_rank, min, max);
 		double s[total];
-		
-		#pragma omp parallel private(i,j,h_min, h_max) num_threads(hilos)
+		cont = 0;		
+		#pragma omp parallel private(i,j,h_min, h_max) num_threads(2)
 		{
-			np=omp_get_num_threads();
-            iam=omp_get_thread_num();
 
-			h_min = iam * col_proc;
-			
-			if ( iam+1 == np)
-				h_max = ((iam+1) * col_hilos)+colrest_hilos;
-			else
-				h_max = (iam+1) * col_hilos;
-				
-			#pragma omp for schedule(static) 
-			for (i = h_min ; i < h_max ; i++)
+			for (i = min ; i < max ; i++)
 			{
 				for( j = 0 ; j < m; j++ )
 				{
-					s[(iam+1)*h_min] += a[j] * b[ (i*m) + j ];		
+					s[cont] += a[j] * b[ (i*m) + j ];		
 				}
+				cont++;
 			}
+			cont++;
 		}
           
 		MPI_Send(&total, 1, MPI_INT, 0, 0, MPI_COMM_WORLD);
