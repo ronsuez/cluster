@@ -9,7 +9,7 @@
 
 int main(int argc, char **argv) 
 {
-	double	a[N],				/*Vector A*/
+	static double	a[N],				/*Vector A*/
 			b[M+(N*M)],			/*Matriz B*/
 			c[N],				/*Vector Fila resultante C*/			
 			vaux[N];
