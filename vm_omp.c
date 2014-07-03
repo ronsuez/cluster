@@ -52,7 +52,7 @@ int main(int argc, char* argv[]) {
     void vm(double *a, int fa,int ca,int lda,double *b,int fb,double *c,int fc)
 {
     int i, j; double s;
-    #pragma omp parallel num_threads(ca)
+    #pragma omp parallel num_threads(4)
     {
          
         #pragma omp for private(i,j,s) schedule(static) 
